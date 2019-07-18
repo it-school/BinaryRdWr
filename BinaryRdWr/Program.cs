@@ -11,10 +11,10 @@ namespace BinaryRdWr
     {
         string firstname;		// Имя
         string lastname;		// Фамилия
-        string address;		// Адрес
+        string address;		    // Адрес
         string phone;			// Телефон
         DateTime birthday;		// Дата рождения
-        int number;			// Номер зачетки
+        int number;			    // Номер зачетки
 
         // Поверхностное копирование объекта
         public Student Clone()
@@ -112,30 +112,6 @@ namespace BinaryRdWr
         // Массив студентов
         Student[] st;
 
-        // Свойства
-        public string GroupName
-        {
-            get
-            {
-                return groupname;
-            }
-            set
-            {
-                groupname = value;
-            }
-        }
-        public Student[] Students
-        {
-            get
-            {
-                return st;
-            }
-            set
-            {
-                st = value;
-            }
-        }
-
         // Конструктор, получающий название группы и количество студентов
         public Group(string gn, int n)
         {
@@ -166,7 +142,7 @@ namespace BinaryRdWr
         {
             for (int i = 0; i < st.Length; i++)
             {
-                Console.WriteLine("{0}.", i + 1);
+                Console.WriteLine($"{i+1}.");
                 st[i].Input();
             }
         }
@@ -182,11 +158,11 @@ namespace BinaryRdWr
         // Вывод списка группы
         public void Print()
         {
-            Console.WriteLine("Группа {0}:", groupname);
+            Console.WriteLine($"Группа {groupname}:");
 
             for (int i = 0; i < st.Length; i++)
             {
-                Console.WriteLine("{0}.", i + 1);
+                Console.WriteLine($"{i + 1}.");
                 st[i].Print();
             }
         }
@@ -226,8 +202,7 @@ namespace BinaryRdWr
                 st[i].Write(bw);
         }
 
-        // Статический метод для чтения из файла информации
-        // и создания нового объекта на ее основе
+        // Статический метод для чтения из файла информации и создания нового объекта на ее основе
         public static Group Read(BinaryReader br)
         {
             string gn = br.ReadString();
@@ -253,13 +228,13 @@ namespace BinaryRdWr
         static void Main(string[] args)
         {
             // Группа
-            Group gr = new Group("Group-192", 5);
+            Group gr = new Group("Group-192", 2);
 
             gr.Input();
             gr.Print();
 
             // Создаем поток для создания файла и/или записи в него
-            FileStream fs = new FileStream("group.bin", FileMode.OpenOrCreate, FileAccess.Write);
+            FileStream fs = new FileStream(@"d:\group.bin", FileMode.OpenOrCreate, FileAccess.Write);
 
             // Создаем двоичный поток для записи
             BinaryWriter bw = new BinaryWriter(fs, Encoding.Default);
@@ -271,7 +246,7 @@ namespace BinaryRdWr
             fs.Close();
 
             // Создаем поток для чтения из файла
-            fs = new FileStream("group.bin", FileMode.Open, FileAccess.Read);
+            fs = new FileStream(@"d:\group.bin", FileMode.Open, FileAccess.Read);
             // Создаем двоичный поток для чтения
             BinaryReader br = new BinaryReader(fs, Encoding.Default);
 
