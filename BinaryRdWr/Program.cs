@@ -36,9 +36,8 @@ namespace BinaryRdWr
             phone = Console.ReadLine();
             Console.Write("Дата рождения: ");
             try
-            {
-                // Считывание даты
-                birthday = Convert.ToDateTime(Console.ReadLine());
+            {                
+                birthday = Convert.ToDateTime(Console.ReadLine()); // Считывание даты
             }
             catch
             {
